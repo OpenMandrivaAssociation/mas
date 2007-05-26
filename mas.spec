@@ -152,9 +152,51 @@ mkdir -p %buildroot%_var/log/mas
 #menu
 mkdir -p $RPM_BUILD_ROOT%{_menudir}
 cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%name-control-apps
-?package(%{name}-control-apps): command="masconf_gui" icon="%{name}.png" needs="x11" title="MASConf" longtitle="MAS Internet Conferencing" section="Multimedia/Sound"
-?package(%{name}-control-apps): command="masmix" icon="%{name}.png" needs="x11" title="MASMix" longtitle="MAS Mixer" section="Multimedia/Sound"
-?package(%{name}-control-apps): command="masplayer" icon="%{name}.png" needs="x11" title="MASPlayer" longtitle="MAS Audio Player" section="Multimedia/Sound"
+?package(%{name}-control-apps): command="masconf_gui" icon="%{name}.png" needs="x11" title="MASConf" longtitle="MAS Internet Conferencing" section="Multimedia/Sound" xdg="true"
+?package(%{name}-control-apps): command="masmix" icon="%{name}.png" needs="x11" title="MASMix" longtitle="MAS Mixer" section="Multimedia/Sound" xdg="true"
+?package(%{name}-control-apps): command="masplayer" icon="%{name}.png" needs="x11" title="MASPlayer" longtitle="MAS Audio Player" section="Multimedia/Sound" xdg="true"
+EOF
+
+#XDG menu
+
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
+cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-masconf_gui.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=MASConf
+Comment=MAS Internet Conferencing
+Exec=%{_bindir}/masconf_gui 
+Icon=%{name}
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=AudioVideo;Audio;Video;Player;X-MandrivaLinux-Internet-VideoConference;
+EOF
+
+cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-masmix.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=MASMix
+Comment=MAS Mixer
+Exec=%{_bindir}/masmix
+Icon=%{name}
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=AudioVideo;Audio;Mixer;X-MandrivaLinux-Multimedia-Sound;
+EOF
+
+cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-masplayer.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=MASMix
+Comment=MAS Player
+Exec=%{_bindir}/masplayer
+Icon=%{name}
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=AudioVideo;Audio;Player;X-MandrivaLinux-Multimedia-Sound;
 EOF
 
 #icons
@@ -244,6 +286,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/masplayer
 %{_bindir}/massignal
 %{_menudir}/%name-control-apps
+%{_datadir}/applications/mandriva-masplayer.desktop
+%{_datadir}/applications/mandriva-masmix.desktop
+%{_datadir}/applications/mandriva-masconf_gui.desktop
 %{_liconsdir}/%name.png
 %{_iconsdir}/%name.png
 %{_miconsdir}/%name.png
