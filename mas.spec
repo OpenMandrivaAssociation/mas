@@ -1,6 +1,6 @@
 %define name	mas
 %define version 0.6.3
-%define release %mkrel 3
+%define release %mkrel 4
 
 %define major 	1
 %define libname %mklibname %name %major
@@ -165,12 +165,18 @@ cat %SOURCE4 > $RPM_BUILD_ROOT/%_iconsdir/%name.png
 mkdir -p $RPM_BUILD_ROOT/%_miconsdir
 cat %SOURCE5 > $RPM_BUILD_ROOT/%_miconsdir/%name.png
 
+#fd.o icons
+mkdir -p $RPM_BUILD_ROOT/%_iconsdir/hicolor/{16x16,32x32,48x48}/apps
+cat %SOURCE3 > $RPM_BUILD_ROOT/%_iconsdir/hicolor/48x48/apps/%name.png
+cat %SOURCE4 > $RPM_BUILD_ROOT/%_iconsdir/hicolor/32x32/apps/%name.png
+cat %SOURCE5 > $RPM_BUILD_ROOT/%_iconsdir/hicolor/16x16/apps/%name.png
+
 mkdir -p %buildroot%_initrddir
 mv %buildroot/%_sysconfdir/init.d/mas %buildroot%_initrddir
 
 mkdir -p %buildroot%_sysconfdir/logrotate.d
 cat > %buildroot%_sysconfdir/logrotate.d/%name <<EOF
-%_var/log/%name/* {
+%_var/log/%name/*.log {
     weekly
     notifempty
     missingok
@@ -190,8 +196,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %post control-apps
 %update_menus		
+%update_icon_cache hicolor
 %postun control-apps
 %clean_menus
+%clean_icon_cache hicolor
 
 %post -n %{libname} -p /sbin/ldconfig
 %postun -n %{libname} -p /sbin/ldconfig
@@ -239,6 +247,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_liconsdir}/%name.png
 %{_iconsdir}/%name.png
 %{_miconsdir}/%name.png
+%{_iconsdir}/hicolor/48x48/apps/%name.png
+%{_iconsdir}/hicolor/32x32/apps/%name.png
+%{_iconsdir}/hicolor/16x16/apps/%name.png
 
 %files -n %{libname}
 %defattr(-,root,root)
