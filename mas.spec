@@ -162,7 +162,6 @@ EOF
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-masconf_gui.desktop <<EOF
 [Desktop Entry]
-Encoding=UTF-8
 Name=MASConf
 Comment=MAS Internet Conferencing
 Exec=%{_bindir}/masconf_gui 
@@ -175,7 +174,6 @@ EOF
 
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-masmix.desktop <<EOF
 [Desktop Entry]
-Encoding=UTF-8
 Name=MASMix
 Comment=MAS Mixer
 Exec=%{_bindir}/masmix
@@ -188,7 +186,6 @@ EOF
 
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-masplayer.desktop <<EOF
 [Desktop Entry]
-Encoding=UTF-8
 Name=MASMix
 Comment=MAS Player
 Exec=%{_bindir}/masplayer
