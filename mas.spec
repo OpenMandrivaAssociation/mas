@@ -22,7 +22,6 @@ Patch2:		mas-0.6.3-pinit.patch.bz2
 URL:		http://www.mediaapplicationserver.net/
 License:	MIT
 Group:		Sound
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:	fftw2-devel
