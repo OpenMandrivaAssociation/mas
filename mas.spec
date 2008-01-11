@@ -149,12 +149,6 @@ done
 chmod a+r README LICENSE
 mkdir -p %buildroot%_var/log/mas
 #menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%name-control-apps
-?package(%{name}-control-apps): command="masconf_gui" icon="%{name}.png" needs="x11" title="MASConf" longtitle="MAS Internet Conferencing" section="Multimedia/Sound" xdg="true"
-?package(%{name}-control-apps): command="masmix" icon="%{name}.png" needs="x11" title="MASMix" longtitle="MAS Mixer" section="Multimedia/Sound" xdg="true"
-?package(%{name}-control-apps): command="masplayer" icon="%{name}.png" needs="x11" title="MASPlayer" longtitle="MAS Audio Player" section="Multimedia/Sound" xdg="true"
-EOF
 
 #XDG menu
 
@@ -281,7 +275,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/masmm
 %{_bindir}/masplayer
 %{_bindir}/massignal
-%{_menudir}/%name-control-apps
 %{_datadir}/applications/mandriva-masplayer.desktop
 %{_datadir}/applications/mandriva-masmix.desktop
 %{_datadir}/applications/mandriva-masconf_gui.desktop
