@@ -227,12 +227,16 @@ rm -rf $RPM_BUILD_ROOT
 %_preun_service  %{name}
 
 
+%if %mdkversion < 200900
 %post control-apps
 %update_menus		
 %update_icon_cache hicolor
+%endif
+%if %mdkversion < 200900
 %postun control-apps
 %clean_menus
 %clean_icon_cache hicolor
+%endif
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
