@@ -19,7 +19,7 @@ Source5: 	%{name}16.png
 Patch:		mas-0.6.3-logdir.patch.bz2
 Patch1:		mas-0.6.2-fftw.patch.bz2
 Patch2:		mas-0.6.3-pinit.patch.bz2
-URL:		http://www.mediaapplicationserver.net/
+URL:		https://www.mediaapplicationserver.net/
 License:	MIT
 Group:		Sound
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
